@@ -1,5 +1,5 @@
 import { Component } from 'react'
-import { AiOutlineUserAdd } from 'react-icons/ai'
+import { AiOutlineUserAdd, AiOutlineClose } from 'react-icons/ai'
 
 export default class PlayersConfig extends Component {
     constructor(props) {
@@ -48,6 +48,7 @@ export default class PlayersConfig extends Component {
 
       render() {
           const list = this.props.players;
+          console.log(this.props)
           return (
               <>
                 <h2>Jogadores &rarr;</h2>
@@ -58,7 +59,7 @@ export default class PlayersConfig extends Component {
               </form>
               <ol>
                 {list.length 
-                  ? list.map(player => <li key={player.id}>{player.name}</li>) 
+                  ? list.map(player => <li key={player.id}>{player.name} <button onClick={() => this.props.removePlayer(player)} key={player.id}><AiOutlineClose /></button></li>) 
                   : <li>No players yet</li>}
               </ol>
               

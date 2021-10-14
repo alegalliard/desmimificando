@@ -17,11 +17,19 @@ export default class Home extends Component
     }
 
     this.addPlayer = this.addPlayer.bind(this);
+    this.removePlayer = this.removePlayer.bind(this);
   }
 
   addPlayer(player) {
     this.setState((state) => ({
       players: [...state.players, player]
+    }))
+  }
+
+  removePlayer(player) {
+    console.log('CHAMOE', player)
+    this.setState((state) => ({
+      players: state.players.filter(p => p != player)
     }))
   }
 
@@ -57,6 +65,7 @@ export default class Home extends Component
               <PlayersConfig 
                 players={this.state.players}
                 addPlayer={this.addPlayer}
+                removePlayer={this.removePlayer}
                />
             </div>
 
