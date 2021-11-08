@@ -1,5 +1,6 @@
 import { Component } from 'react'
 import { AiOutlineUserAdd, AiOutlineClose } from 'react-icons/ai'
+import Link from 'next/link'
 
 export default class PlayersConfig extends Component {
     constructor(props) {
@@ -14,6 +15,7 @@ export default class PlayersConfig extends Component {
     }
 
     newPlayerName(e) {
+      //if( e.target.value.length > 3)
         this.setState({newPlayer: e.target.value})
       }
     
@@ -46,16 +48,16 @@ export default class PlayersConfig extends Component {
         })    
       }
 
+
       render() {
           const list = this.props.players;
-          console.log(this.props)
           return (
               <>
                 <h2>Jogadores &rarr;</h2>
               
               <form onSubmit={this.buildProfile}>
                 <input type="text" id="newPlayerName" value={this.state.newPlayer} onChange={this.newPlayerName} />
-                <button type="submit"><AiOutlineUserAdd /></button>
+                <button type="submit" disabled={this.state.newPlayer.length < 3}><AiOutlineUserAdd /></button>
               </form>
               <ol>
                 {list.length 
@@ -64,9 +66,10 @@ export default class PlayersConfig extends Component {
               </ol>
               
 
-              <button type="button" onClick={this.sortPlayers}>
+              <button type="button" onClick={this.sortPlayers} disabled={list.length < 2}>
                 Embaralhar
               </button>
+
               </>
           )
       }
